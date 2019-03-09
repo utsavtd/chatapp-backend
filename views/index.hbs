@@ -1,0 +1,22 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+<link rel="stylesheet" href="/stylesheets/style.css" media="all">
+
+<h1> {{title}} {{listen_to}}</h1>
+<p>by default it will listen to socket channel.</p>
+<p>to listen to different channel please use get parameters as hostname?listen_to="channel-name".</p>
+<script>
+    var channel_name = {{{ listen_to }}};
+    if(channel_name===""){
+        channel_name="roomn-name";
+    }
+
+//    var socket = io('//' + document.location.hostname + ':' + document.location.port);
+    var socket = io('//localhost:3000');
+    socket.on('connect', function() {
+        socket.emit('join', 'roomn-name');
+    });
+
+    socket.on("msg", function (data) {
+        console.log(data);
+    });
+</script>
