@@ -12,7 +12,7 @@ var options = {
 };
 
 //mongodb://username:password@host:port/database
-mongoose.connect("mongodb://localhost:27017/chatapp",options,function(err){
+mongoose.connect("mongodb://chatapp:chatapp1@ds155903.mlab.com:55903/chatapp",options,function(err){
     if(err){
         console.log("mongo db connection error :",err.message);
     }
