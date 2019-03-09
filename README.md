@@ -10,3 +10,6 @@ npm install
 
 node bin/www   or nodemon
 
+
+API DOCUMENTATION LINK https://documenter.getpostman.com/view/2031350/S11RJaJH
+
