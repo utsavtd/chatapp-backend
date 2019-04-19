@@ -16,6 +16,7 @@ exports.find = async (req, res, next)=> {
     if(!room){
         room= new Room()
         room.name=req.body.room
+        room.status="active"
         await room.save()
     }
 return res.json({room})
@@ -61,6 +62,23 @@ exports.createMessage=async (req,res,next)=>{
     message.save()
     res.io.in(req.body.room).emit("msg", message);
     res.status(200).json({"message": "ok", "payload": message})
+
+};
+exports.create=async (req,res,next)=>{
+    req.checkBody('name', 'room  cannot be empty.').notEmpty();
+    req.checkBody('status', 'message  cannot be empty.').notEmpty();
+    var errors = req.validationErrors();
+
+    if (errors) {
+        res.status(400).json({"message": "invalid parameters", "payload": errors});
+        return;
+    }
+
+    var room = new Room();
+    room.name=req.body.name
+    room.status=req.body.status
+    room.save()
+    res.status(200).json({"message": "ok", "payload": room})
 
 };
 

@@ -18,6 +18,8 @@ var hbs = require('express-handlebars');
 var index = require('./routes/index');
 var room = require('./routes/room');
 var api = require('./routes/api');
+var user = require('./routes/users');
+
 
 //var catalog = require('./routes/catalog');  //Import routes for "catalog" area of site
 
@@ -92,6 +94,7 @@ app.use(function (req, res, next) {
 app.use('/', index);
 app.use('/room', room);
 app.use('/api', api);
+app.use('/user', user);
 
 app.use(function (err, req, res, next) {
     // set locals, only providing error in development
